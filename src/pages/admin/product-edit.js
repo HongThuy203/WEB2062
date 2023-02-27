@@ -48,7 +48,6 @@ const productsEdit = ({ id }) => {
                             router.navigate('/products');
                         }
                     })
-
                 }).catch((error) => {
                     const formErrorEl = document.querySelectorAll(".form-error");
                     formErrorEl.forEach((element, index) => {
