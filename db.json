@@ -1,3 +1,36 @@
 {
-    "products": []
+  "products": [
+    {
+      "id": 1,
+      "name": "Iphone",
+      "image": "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/x/i/xiaomi-12t-den_2.jpg",
+      "price": 3000000,
+      "quality": "hight",
+      "description": "San pham rat tot"
+    },
+    {
+      "id": 2,
+      "name": "Iphone",
+      "image": "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/x/i/xiaomi-12t-den_2.jpg",
+      "price": 3000000,
+      "quality": "hight",
+      "description": "San pham rat tot"
+    },
+    {
+      "id": 3,
+      "name": "Iphone",
+      "image": "https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/x/i/xiaomi-12t-den_2.jpg",
+      "price": 3000000,
+      "quality": "hight",
+      "description": "San pham rat tot"
+    },
+    {
+      "name": "xiaoMi 66",
+      "image": "",
+      "price": "23000",
+      "quality": "tot",
+      "desctiption": "rat tot",
+      "id": 4
+    }
+  ]
 }
