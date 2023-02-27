@@ -12,13 +12,12 @@ const productsEdit = ({ id }) => {
     const [products, setProducts] = useState({});
 
     useEffect(() => {
-        (() => {
-            try {
-                getProduct(id).then(({ data }) => setProducts(data));
-            } catch (error) {
-                console.log(error);
-            }
-        })();
+        try {
+            getProduct(id).then(({ data }) => setProducts(data));
+        } catch (error) {
+            console.log(error);
+        }
+
     }, [])
 
     useEffect(() => {
@@ -32,20 +31,25 @@ const productsEdit = ({ id }) => {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             const formData = {
+                id: id,
                 name: productName.value,
                 image: productImage.value,
                 price: productPrice.value,
                 quality: productQuality.value,
-                desctiption: productDes.value
+                description: productDes.value
             };
 
             projectSchema
                 .validate(formData, { abortEarly: false })
                 .then(() => {
-                    window.confirm("Cap nhat thanh cong");
-                    updateProducts(formData).then(() => router.navigate("/products"));
-                })
-                .catch((error) => {
+                    updateProducts(formData).then(() => {
+                        const confirm = window.confirm("Them thanh cong");
+                        if (confirm) {
+                            router.navigate('/products');
+                        }
+                    })
+
+                }).catch((error) => {
                     const formErrorEl = document.querySelectorAll(".form-error");
                     formErrorEl.forEach((element, index) => {
                         element.innerHTML = error.errors[index];
@@ -55,7 +59,7 @@ const productsEdit = ({ id }) => {
     })
 
 
-    return /*html*/`
+    return `
     <div class="container ">
     <h1>Cap nhat san pham </h1>
     <form action="" id="form-add" class="form-group">
@@ -66,21 +70,21 @@ const productsEdit = ({ id }) => {
     </div>
     <div class="form-group">
         <label for="">Anh</label>
-        <input type="file" id="product-image" class="form-control">
+        <input type="file" id="product-image" class="form-control" value="${products.image}" >
     </div>
     <div class="form-group">
         <label for="">Gia</label>
-        <input type="text" id="product-price" class="form-control">
+        <input type="text" id="product-price" class="form-control" value="${products.price}" >
         <div class="form-error text-danger"> </div>
     </div>
     <div class="form-group">
         <label for="">Danh gia</label>
-        <input type="text" id="product-quality" class="form-control">
+        <input type="text" id="product-quality" class="form-control" value="${products.quality}" >
        
     </div>
     <div class="form-group">
         <label for="">Mota</label>
-        <input type="text" id="product-description"class="form-control">
+        <input type="text" id="product-description"class="form-control" value="${products.description}" >
        
     </div>
     <div>
@@ -94,4 +98,4 @@ const productsEdit = ({ id }) => {
   `
 }
 
-export default productsEdit
+export default productsEdit;

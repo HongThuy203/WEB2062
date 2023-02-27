@@ -24,16 +24,24 @@ const projectsAdd = () => {
                 image: productImage.value,
                 price: productPrice.value,
                 quality: productQuality.value,
-                desctiption: productDes.value
+                description: productDes.value
             };
 
             projectSchema
                 .validate(formData, { abortEarly: false })
                 .then(() => {
-                    window.confirm("Them thanh cong");
-                    addProducts(formData).then(() => router.navigate("/products"));
-                })
-                .catch((error) => {
+                    //     window.confirm("Them thanh cong");
+                    //     addProducts(formData).then(() => router.navigate('/products'));
+                    // })
+                    addProducts(formData).then(() => {
+                        const confirm = window.confirm("Them thanh cong");
+                        if (confirm) {
+                            router.navigate('/products');
+                        }
+
+                    })
+
+                }).catch((error) => {
                     const formErrorEl = document.querySelectorAll(".form-error");
                     formErrorEl.forEach((element, index) => {
                         element.innerHTML = error.errors[index];
@@ -41,6 +49,7 @@ const projectsAdd = () => {
                 })
         })
     })
+
 
 
     return /*html*/`
